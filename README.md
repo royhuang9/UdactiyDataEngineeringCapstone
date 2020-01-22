@@ -1,4 +1,4 @@
-# Udactiy Data Engineering Capstoneutilise
+# Udactiy Data Engineering Capstone Project
 
 
 
@@ -30,3 +30,43 @@ The project contains four phases, 8 steps totally.
 There are one fact table imm_facts and four dimensional tables. The fact table includes most of items from i94 immigration records and keys linked to dimensional tables. Dimensioanl tables includes persons, cities, dates and transport. Fact table and persons table can be joined to analyze the components of visitors to US, age distribution, visa types. Fact table and cities can be used to find the popular landing ports and relations to city's population, temperature. Joining fact table and dates table can discover the popular month of visiting US and the trends with time. Dimensional table transport and fact table help to analyze the popular airlines.
 
 The main dataset will include data on immigration to the United States, and supplementary datasets will include data on airport codes, U.S. city demographics, and temperature data. You're also welcome to enrich the project with additional data if you'd like to set your project apart.
+
+
+
+## Run code
+
+### Setup EC2
+
+I run a docker image of the Apache Airflow in EC2. So an EC2 environment should be setup first, then install docker and pull airflow docker image.
+
+- Install docker
+
+  ```shell
+  sudo apt-get update
+  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
+  sudo apt-key fingerprint 0EBFCD88
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo apt-key fingerprint 0EBFCD88
+  sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+     $(lsb_release -cs) \
+     stable"
+  sudo apt-get update
+  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  sudo docker run hello-world
+  ```
+
+- Pull the docker image from Docker repository
+
+	```shell
+	sudo docker pull puckel/docker-airflow
+	```
+
+- Runs Airflow
+
+  ```shell
+  sudo docker run -d -p 8080:8080 puckel/docker-airflow webserver
+  ```
+
+  
+
+Another choice is setup Airflow through Amazon Sagemaker which has already integrated Apache Airflow.
